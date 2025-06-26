@@ -1,0 +1,20 @@
+/* Logo Styles */
+.navbar-brand.logo {
+    font-family: 'Roboto', sans-serif; /* Use a clean, modern font */
+    font-size: 2rem; /* Larger font size */
+    font-weight: 700; /* Bold font weight */
+    letter-spacing: 2px; /* Add spacing between the letters */
+    text-transform: uppercase; /* Make the text uppercase */
+    color: #fff; /* White color for the text */
+    text-decoration: none; /* Remove underline */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    padding-left: 15px; /* Add some padding for better alignment */
+    padding-right: 15px;
+}
+
+/* Logo Hover Effect */
+.navbar-brand.logo:hover {
+    color: #ffc107; /* Change the color on hover (e.g., yellow) */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow */
+    transform: scale(1.1); /* Slightly increase the size on hover */
+}

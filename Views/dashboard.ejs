@@ -1,0 +1,112 @@
+<%- layout('layout/layout.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+<div class="content-wrapper">
+    <div class="container">
+
+        <% if (data.role == "Admin") { %>  
+            <div class="col-md-12 text-center">
+                <h4 class="header-line">ADMIN DASHBOARD</h4>
+            </div>
+        <% } %>
+
+        <% if (data.role == "Staff") { %>  
+            <div class="col-md-12 text-center">
+                <h4 class="header-line">USER DASHBOARD</h4>
+            </div>
+        <% } %>
+
+        <div class="row">
+            <!-- Today -->
+            <div class="col-md-3 col-sm-6">
+                <a href="/today-reports" class="dashboard-card">
+                    <div class="card text-center bg-success text-white">
+                        <div class="card-body">
+                            <i class="fa fa-calendar-check fa-5x"></i>
+                            <h3 id="todayReceipts">0</h3>
+                            <p>Today</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Staff -->
+            <div class="col-md-3 col-sm-6">
+                <a href="/staff" class="dashboard-card">
+                    <div class="card text-center bg-info text-white">
+                        <div class="card-body">
+                            <i class="fa fa-users fa-5x"></i>
+                            <h3 id="totalStaff">0</h3>
+                            <p>Staff</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-md-3 col-sm-6">
+                <a href="/categories" class="dashboard-card">
+                    <div class="card text-center bg-primary text-white">
+                        <div class="card-body">
+                            <i class="fa fa-list-alt fa-5x"></i>
+                            <h3 id="totalCategories">0</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Passes -->
+            <div class="col-md-3 col-sm-6">
+                <a href="/passes" class="dashboard-card">
+                    <div class="card text-center bg-warning text-white">
+                        <div class="card-body">
+                            <i class="fa fa-ticket-alt fa-5x"></i>
+                            <h3 id="totalPasses">0</h3>
+                            <p>Passes</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('partials/footbar.ejs') %>
+
+<style>
+    .dashboard-card {
+        text-decoration: none;
+    }
+    .card {
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<script>
+    // Automatically update the date every day
+    const today = new Date();
+    const day = today.getDate(); // e.g., 17
+    const month = today.toLocaleString('default', { month: 'long' }); // e.g., April
+    const year = today.getFullYear(); // e.g., 2025
+
+    // You can choose either of the two formats below:
+
+    // 👉 Option 1: Just day (e.g., "17")
+    // document.getElementById("todayReceipts").innerText = day;
+
+    // 👉 Option 2: Full date (e.g., "17 April 2025")
+    document.getElementById("todayReceipts").innerText = `${day} ${month} ${year}`;
+
+    // Static values for other dashboard cards (optional)
+    document.getElementById("totalStaff").innerText = "15";
+    document.getElementById("totalCategories").innerText = "5";
+    document.getElementById("totalPasses").innerText = "100";
+</script>

@@ -1,0 +1,112 @@
+<nav class="navbar fixed-top navbar-dark navbar-expand-md bg-success text-white">
+    <div class="container">
+        <div class="collpase navbar-collapse">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+            <!-- Logo (Tollease) -->
+            <a class="navbar-brand logo" href="#">
+                Tollease
+            </a>
+
+            <ul id="menu-top" class="nav navbar-nav navbar-left">
+                <% if(data.role == "Admin"){ %>
+                    <li>
+                        <a href="#" data-toggle="dropdown">Staff<i class="fa fa-angle-down"></i></a>
+
+                        <ul class="dropdown-menu">
+                            <li style="cursor: pointer;">
+                                <a onclick="addStaff()">Add Staff</a>
+                            </li>
+                            <li style="cursor: pointer;">
+                                <a onclick="manageStaff()">Manage Staff</a>
+                            </li>
+                        </ul>
+                    </li>
+                <% } %>     
+
+                <% if(data.role == "Admin"){ %>
+                    <li>
+                        <a href="#" data-toggle="dropdown">Pass<i class="fa fa-angle-down"></i></a>
+
+                        <ul class="dropdown-menu">
+                            <li style="cursor: pointer;">
+                                <a onclick="addPass()">Add Pass</a>
+                            </li>
+                            <li style="cursor: pointer;">
+                                <a onclick="managePass()">Manage Pass</a>
+                            </li>
+                        </ul>
+                    </li>
+                <% } %>
+
+                <% if(data.role == "Admin"){ %>
+                    <li>
+
+                        <a href="#" data-toggle="dropdown">Pass Reports<i class="fa fa-angle-down"></i></a>
+
+                        <ul class="dropdown-menu">
+                            <li style="cursor: pointer;">
+                                <a onclick="passCount()">Pass Count</a>
+                            </li>
+                            <li style="cursor: pointer;">
+                                <a onclick="passSales()">Sales</a>
+                            </li>
+                        </ul>
+                    </li>
+                <% } %>                            
+
+                <% if(data.role == "Admin"){ %>
+                    <li>
+
+                        <a href="#" data-toggle="dropdown">Receipt Reports<i class="fa fa-angle-down"></i></a>
+
+                        <ul class="dropdown-menu">
+                                <li style="cursor: pointer;">
+                                    <a onclick="manageReceipts()">Manage Receipts</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="receiptCount()">Receipt Count</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="receiptSales()">Sales</a>
+                                </li>
+                        </ul>
+                    </li>
+                <% } %>   
+                         
+                <% if(data.role == "Staff"){ %>
+                    <li style="cursor: pointer;">
+                        <a onclick="addReceipts()">Add Receipt</a>
+                    </li>
+                <% } %>       
+
+                <% if(data.role == "Staff"){ %>
+                    <li style="cursor: pointer;">
+                        <a onclick="passUser()">Pass User</a>
+                    </li>
+                <% } %>       
+            </ul>
+             
+            <ul id="menu-top" class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="dropdown">Profile<i class="fa fa-angle-down"></i></a>
+
+                    <ul class="dropdown-menu">
+                        <li style="cursor: pointer;">
+                            <a onclick="openHomePage()">Home</a>
+                        </li>
+
+                        <li style="cursor: pointer;">
+                            <a onclick="changePassword()">Change Password</a>
+                        </li>
+
+                        <li style="cursor: pointer;">
+                            <a onclick="openlogoutpage()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

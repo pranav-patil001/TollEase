@@ -1,0 +1,48 @@
+<%- layout('layout/layout.ejs') %>
+
+<link rel="stylesheet" type="text/css" href="css/Datatables/datatables.css">
+<link type="text/css" href="css/Datatables/datatables.min.css">
+
+<%- include('partials/navbar.ejs') %>
+<div class="content-wrapper">
+
+    <div class="container">
+
+        <div class="col-md-12">
+            <center><h4 class="header-line">Manage Staff</h4></center>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-success" style="border: 0;">
+                     <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table" id="staffes">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Gender</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                     </tr>
+                                </thead>
+
+                                <tbody></tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+<%- include('partials/footbar.ejs') %>
+    
+<script type="text/javascript" src="js/manage_staff.js"></script>
+<script type="text/javascript" src="js/Datatables/datatables.js"></script>
+<script type="text/javascript" src="js/Datatables/datatables.min.js"></script>

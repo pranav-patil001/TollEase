@@ -1,0 +1,102 @@
+<%- layout('layout/layout.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+
+<div class="content-wrapper">
+    <div class="container">
+
+        <div class="col-md-12">
+            <center><h4 class="header-line">Add Receipt</h4></center>    
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <div class="panel panel-success" style="border: 0;">
+                    <div class="panel-body">
+
+                        <!-- Category Selection -->
+                        <div class="form-group">
+                            <label>Category <label style="color: red">*</label></label>
+                            <select class="form-control" required id="vehicle_category">
+                                <option>Select Option</option>
+                                <!-- Add categories dynamically if necessary -->
+                            </select>
+                        </div>
+
+                        <!-- Vehicle Number Input -->
+                        <div class="form-group">
+                            <label>Vehicle Number <label style="color: red">*</label></label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" autocomplete="off" id="vehicle_number" placeholder="Enter Vehicle Number" required />
+                                <button class="btn btn-primary" id="detectPlate" onclick="detectNumberPlate()">Detect</button>
+                            </div>
+                            <small class="text-muted">You can enter manually or use image detection.</small>
+                        </div>
+
+                        <!-- Image Upload for Detection -->
+                        <div class="form-group">
+                            <label>Upload Image for Detection</label>
+                            <input type="file" class="form-control" id="numberPlateImage" accept="image/*" />
+                        </div>
+
+                        <!-- Trip Selection -->
+                        <div class="form-group">
+                            <label>Trip <label style="color: red">*</label></label>
+                            <select class="form-control" required="required" id="trip_way" onchange="catValue()">
+                                <option value="One Way">One Way</option>
+                                <option value="Two Way">Two Way</option>
+                            </select>
+                        </div>
+
+                        <!-- Cost Input -->
+                        <div class="form-group">
+                            <label>Cost <label style="color: red">*</label></label>
+                            <input class="form-control" type="number" autocomplete="off" id="receipt_cost" placeholder="Enter Cost" required />
+                        </div>
+
+                        <!-- Buttons -->
+                        <button type="submit" name="create" id="submitVechile" class="btn btn-success">Add Receipt</button>
+                        <button type="submit" name="create" id="allowVechile" class="btn btn-success" style="visibility: hidden">Allow</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footbar.ejs') %>
+
+<script type="text/javascript" src="js/addReceipt.js"></script>
+<script>
+    // Function to Detect Number Plate
+    async function detectNumberPlate() {
+        const fileInput = document.getElementById('numberPlateImage');
+        const vehicleNumberInput = document.getElementById('vehicle_number');
+        
+        if (fileInput.files.length === 0) {
+            alert('Please upload an image for detection.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+
+        try {
+            const response = await fetch('/detect-number-plate', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                vehicleNumberInput.value = data.numberPlate;
+                alert('Number plate detected successfully: ' + data.numberPlate);
+            } else {
+                alert('Detection failed: ' + data.message);
+            }
+        } catch (error) {
+            alert('Error detecting number plate: ' + error.message);
+        }
+    }
+</script>

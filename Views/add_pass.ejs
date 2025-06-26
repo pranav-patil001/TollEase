@@ -1,0 +1,131 @@
+<%- layout('layout/layout.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+    <div class="content-wrapper">
+        <div class="container">
+
+            <div class="col-md-12">
+                <center><h4 class="header-line">Add Pass</h4></center>    
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                    <div class="panel panel-success" style="border: 0;">
+                        <div class="panel-body">
+
+                            <!-- Vehicle Category -->
+                            <div class="form-group">
+                                <label>Vehicle Category <label style="color: red">*</label></label>
+                                <select class="form-control" name="author" required="required" id="vehicle_category">
+                                    <!-- Add categories dynamically if necessary -->
+                                </select>
+                            </div>
+
+                            <!-- Registration Number -->
+                            <div class="form-group">
+                                <label>Registration Number <label style="color: red">*</label></label>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" autocomplete="off" id="reg_number" placeholder="Enter Registration Number" required />
+                                    <button class="btn btn-primary" id="detectPlate" onclick="detectNumberPlate()">Detect</button>
+                                </div>
+                                <small class="text-muted">You can enter manually or use image detection.</small>
+                            </div>
+
+                            <!-- Image Upload for Detection -->
+                            <div class="form-group">
+                                <label>Upload Image for Detection</label>
+                                <input type="file" class="form-control" id="numberPlateImage" accept="image/*" />
+                            </div>
+
+                            <!-- Issue Date -->
+                            <div class="form-group">
+                                <label>Issue Date <label style="color: red">*</label></label>
+                                <input class="form-control" type="date" autocomplete="off" id="issue_date" required />
+                            </div>
+
+                            <!-- Applicant Name -->
+                            <div class="form-group">
+                                <label>Applicant Name <label style="color: red">*</label></label>
+                                <input class="form-control" type="text" autocomplete="off" id="applicant_name" placeholder="Enter Applicant Name" required />
+                            </div>
+
+                            <!-- Applicant Age -->
+                            <div class="form-group">
+                                <label>Age <label style="color: red">*</label></label>
+                                <input class="form-control" type="number" autocomplete="off" id="applicant_age" placeholder="Enter Applicant Age" required />
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group">
+                                <label>Address <label style="color: red">*</label></label>
+                                <input class="form-control" type="text" autocomplete="off" id="applicant_address" placeholder="Enter Applicant Address" required />
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group">
+                                <label>Phone <label style="color: red">*</label></label>
+                                <input class="form-control" 
+                                       type="tel" 
+                                       name="author" 
+                                       autocomplete="off" 
+                                       id="staff_phone" 
+                                       placeholder="Enter Phone" 
+                                       required 
+                                       pattern="\d{10}" 
+                                       maxlength="10" 
+                                       minlength="10" 
+                                       title="Please enter a 10-digit phone number" />
+                            </div>
+
+                            <!-- Balance -->
+                            <div class="form-group">
+                                <label>Balance <label style="color: red">*</label></label>
+                                <input class="form-control" type="number" autocomplete="off" id="applicant_balance" placeholder="Enter Applicant Balance" required />
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" name="create" id="submitPass" class="btn btn-success">Add Pass</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<%- include('partials/footbar.ejs') %>
+
+<script type="text/javascript" src="js/addPass.js"></script>
+<script>
+    // Function to Detect Number Plate
+    async function detectNumberPlate() {
+        const fileInput = document.getElementById('numberPlateImage');
+        const regNumberInput = document.getElementById('reg_number');
+        
+        if (fileInput.files.length === 0) {
+            alert('Please upload an image for detection.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+
+        try {
+            const response = await fetch('/detect-number-plate', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                regNumberInput.value = data.numberPlate;
+                alert('Number plate detected successfully: ' + data.numberPlate);
+            } else {
+                alert('Detection failed: ' + data.message);
+            }
+        } catch (error) {
+            alert('Error detecting number plate: ' + error.message);
+        }
+    }
+</script>

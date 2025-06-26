@@ -1,0 +1,93 @@
+<%- layout('layout/layout.ejs') %>
+
+<%- include('partials/navbar.ejs') %>
+    <div class="content-wrapper">
+        <div class="container">
+
+            <div class="col-md-12">
+                <center><h4 class="header-line">Add Staff</h4></center>    
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                    <div class="alert alert-success" id="email_info" style="display : none">
+                        <center id="display_email"></center>
+                    </div>
+
+                    <div class="panel panel-success" style="border: 0;">
+
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label>Name <label style="color: red">*</label></label>
+                                <input class="form-control" type="text" name="author" autocomplete="off" id="staff_name" placeholder="Enter Name" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email <label style="color: red">*</label></label>
+                                <input class="form-control" type="text" name="author" autocomplete="off" id="staff_email" placeholder="Enter Email" onchange="email_avail()" required />
+                            </div>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input type="password" 
+                                    class="form-control" 
+                                    id="user_pass" 
+                                    placeholder="Enter Password" 
+                                    autocomplete="off" 
+                                    required 
+                                    pattern=".{6,12}" 
+                                    maxlength="12"
+                                    title="Password must be between 6 and 12 characters long." />
+                             
+                            <div class="form-group">
+                                <label>Address <label style="color: red">*</label></label>
+                                <input class="form-control" type="text" name="author" autocomplete="off" id="staff_address" placeholder="Enter Address" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender <label style="color: red">*</label></label>
+                                <select class="form-control" name="author" required="required" id="staff_gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Role <label style="color: red">*</label></label>
+                                <select class="form-control" name="author" required="required" id="staff_role">
+                                    <option value="Staff">Staff</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone <label style="color: red">*</label></label>
+                                <input class="form-control" 
+                                       type="tel" 
+                                       name="author" 
+                                       autocomplete="off" 
+                                       id="staff_phone" 
+                                       placeholder="Enter Phone" 
+                                       required 
+                                       pattern="\d{10}" 
+                                       maxlength="10" 
+                                       minlength="10" 
+                                       title="Please enter a 10-digit phone number" />
+                            </div>
+                            
+
+                            <button type="submit" name="create" id="submitStudent" class="btn btn-success">Add Staff</button>
+
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+<%- include('partials/footbar.ejs') %>
+
+<script type="text/javascript" src="js/addStaff.js"></script>    

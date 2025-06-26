@@ -1,0 +1,38 @@
+{
+  "name": "toll_management_system",
+  "version": "1.0.0",
+  "description": "Toll Management System to manage toll plaza and vehicle passes using bootstrap,Nodejs,MongoDb!!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajat-29/Toll_Management_System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajat-29/Toll_Management_System/issues"
+  },
+  "homepage": "https://github.com/rajat-29/Toll_Management_System#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.6.0",
+    "ejs": "^3.0.1",
+    "ejs-mate": "^3.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "fs": "^0.0.1-security",
+    "http": "0.0.0",
+    "mongoose": "^5.13.23",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7",
+    "sharp": "^0.33.5",
+    "tesseract.js": "^5.1.1"
+  }
+}
